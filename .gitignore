@@ -1,0 +1,20 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Env files
+.env
+.env.*
+
+# Docker
+*.log
+
+# OS
+.DS_Store

@@ -1,0 +1,23 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata:
+ name : order-service
+ labels : 
+  app : order-app
+spec :
+ replicas : 3
+ selector:
+  matchLabels :
+   app : order-app
+ template :
+  metadata: 
+   name : order-service-app
+   labels:
+    app : order-app
+  spec:
+   containers :
+    - name : order-app
+      image : ranjithvoc32022/orders-service:latest
+      ports:
+       - containerPort: 3000
+   

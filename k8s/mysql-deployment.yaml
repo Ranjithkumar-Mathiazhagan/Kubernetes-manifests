@@ -1,0 +1,22 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata:
+ name : mysql-service
+ labels : 
+  app : mysql-app
+spec :
+ replicas : 3
+ selector:
+  matchLabels :
+   app : mysql-app
+ template :
+  metadata: 
+   name : mysql-app
+   labels:
+    app : mysql-app
+  spec:
+   containers :
+    - name : mysql-app
+      image : mysql:8.0
+      ports:
+       - containerPort: 3306

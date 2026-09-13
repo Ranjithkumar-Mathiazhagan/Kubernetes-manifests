@@ -1,0 +1,27 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata:
+ name : frontend-service
+ labels : 
+  app : frontend-app
+spec :
+ replicas : 3
+ selector:
+  matchLabels :
+   app : frontend-app
+ template :
+  metadata: 
+   name : frontend-app
+   labels:
+    app : frontend-app
+  spec:
+   containers :
+    - name : frontend-app
+      image : ranjithvoc32022/frontend:latest
+      ports:
+       - containerPort: 80
+   
+
+    
+
+

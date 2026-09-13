@@ -1,0 +1,27 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata:
+ name : user-service
+ labels : 
+  app : user-app
+spec :
+ replicas : 3
+ selector:
+  matchLabels :
+   app : user-app
+ template :
+  metadata: 
+   name : user-service-app
+   labels:
+    app : user-app
+  spec:
+   containers :
+    - name : user-app
+      image : ranjithvoc32022/users-service:latest
+      ports:
+       - containerPort: 8000
+   
+
+    
+
+
