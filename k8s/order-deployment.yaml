@@ -20,4 +20,21 @@ spec :
       image : ranjithvoc32022/orders-service:latest
       ports:
        - containerPort: 3000
-   
+      env:
+       - name: MYSQL_HOST
+         value: "mysql-service"
+       - name: MYSQL_PORT
+         value: "3306"
+       - name: MYSQL_USER
+         value: "order_service"
+       - name: MYSQL_PASSWORD
+          valueFrom:
+           secretKeyRef:
+            name: mysql-secret
+             key: MYSQL_PASSWORD
+       - name: MYSQL_DATABASE
+         value: "orders_db"
+       - name: PYTHON_SERVICE_URL
+         value: "http://user-service:8000"
+       - name: PORT
+         value: "3000"   
