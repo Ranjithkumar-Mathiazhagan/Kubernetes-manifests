@@ -21,6 +21,23 @@ spec :
       image : ranjithvoc32022/orders-service:latest
       ports:
        - containerPort: 3000
+      resources:
+       requests:
+        cpu : "100m"
+        memory: "128Mi"
+       limits:
+        cpu : "250m"
+        memory: "256Mi"
+      readinessProbe:
+       tcpSocket:
+        port : 3000
+       initialDelaySeconds: 5
+       periodSeconds: 10
+      livenessProbe:
+       tcpSocket:
+        port : 3000
+       initialDelaySeconds: 10
+       periodSeconds: 15
       env:
        - name: MYSQL_HOST
          value: "mysql-service"
