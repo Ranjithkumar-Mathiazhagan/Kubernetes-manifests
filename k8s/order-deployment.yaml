@@ -29,10 +29,10 @@ spec :
        - name: MYSQL_USER
          value: "order_service"
        - name: MYSQL_PASSWORD
-          valueFrom:
-           secretKeyRef:
-            name: mysql-secret
-             key: MYSQL_PASSWORD
+         valueFrom:
+          secretKeyRef:
+           name: mysql-secret
+           key: MYSQL_PASSWORD
        - name: MYSQL_DATABASE
          value: "orders_db"
        - name: PYTHON_SERVICE_URL
