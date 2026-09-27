@@ -1,0 +1,4 @@
+namespace: dev
+mysql:
+  replicas: 3
+  image: "mysql:8.0"

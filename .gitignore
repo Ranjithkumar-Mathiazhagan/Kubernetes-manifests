@@ -19,3 +19,4 @@ venv/
 # OS
 .DS_Store
 k8s/*secret*.yaml
+ecommerce-chart/templates/*secret*.yaml

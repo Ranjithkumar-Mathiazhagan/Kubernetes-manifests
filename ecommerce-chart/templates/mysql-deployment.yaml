@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-service
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: mysql-app
+spec:
+  replicas: {{ .Values.mysql.replicas }}
+  selector:
+    matchLabels:
+      app: mysql-app
+  template:
+    metadata:
+      name: mysql-app
+      labels:
+        app: mysql-app
+    spec:
+      containers:
+        - name: mysql-app
+          image: "{{ .Values.mysql.image }}"
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_DATABASE
+              value: "orders_db"
+            - name: MYSQL_USER
+              value: "order_service"
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_PASSWORD

@@ -1,0 +1,40 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata:
+ name : user-service
+ namespace: dev
+ labels : 
+  app : user-app
+spec :
+ replicas : 3
+ selector:
+  matchLabels :
+   app : user-app
+ template :
+  metadata: 
+   name : user-service-app
+   labels:
+    app : user-app
+  spec:
+   containers :
+    - name : user-app
+      image : ranjithvoc32022/users-service:latest
+      ports:
+       - containerPort: 8000
+      env:
+       - name: POSTGRES_HOST
+         value: "postgres-service"
+       - name: POSTGRES_PORT
+         value: "5432"
+       - name: POSTGRES_USER
+         value: "user_service"
+       - name: POSTGRES_PASSWORD
+         valueFrom:
+          secretKeyRef:
+           name: postgres-secret
+           key: POSTGRES_PASSWORD
+       - name: POSTGRES_DB
+         value: "users_db"
+    
+
+
